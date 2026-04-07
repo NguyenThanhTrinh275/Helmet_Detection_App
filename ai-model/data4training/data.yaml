@@ -1,0 +1,8 @@
+path: D:/Project_CV/Helmet_Detection/ai-model/data4training
+train: images/train
+val: images/val
+test: images/test
+nc: 2
+names:
+  0: helmet
+  1: no helmet

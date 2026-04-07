@@ -32,8 +32,16 @@ wheels/
 
 # --- AI Models & Datasets (QUAN TRỌNG) ---
 # Không đẩy dữ liệu và trọng số mô hình quá nặng lên Git\
-ai-model/data4training/
-ai-model/datasets/
+ai-model/data4training/images/test/*
+ai-model/data4training/images/train/*
+ai-model/data4training/images/val/*
+ai-model/data4training/labels/train/*
+ai-model/data4training/labels/val/*
+ai-model/data4training/labels/test/*
+
+
+ai-model/datasets/dataKaggle/*
+ai-model/datasets/dataRoboflow/*
 ai-model/runs/
 ai-model/wandb/
 *.pt
