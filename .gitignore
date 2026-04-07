@@ -1,0 +1,71 @@
+# --- General ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# --- Python / AI / Backend (FastAPI) ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.ipynb_checkpoints
+
+# --- AI Models & Datasets (QUAN TRỌNG) ---
+# Không đẩy dữ liệu và trọng số mô hình quá nặng lên Git\
+ai-model/data4training/
+ai-model/datasets/
+ai-model/runs/
+ai-model/wandb/
+*.pt
+*.pth
+*.pwf
+# Cho phép đẩy file ONNX nếu nó nhẹ (<50MB), nếu không thì ignore luôn
+# *.onnx
+
+# --- Frontend (React) ---
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# --- Google Cloud & Docker ---
+# Tuyệt đối không đẩy file JSON chứa khóa Service Account
+*.json
+!package.json
+!composer.json
+.dockerignore
+
+# --- OS Specific ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
