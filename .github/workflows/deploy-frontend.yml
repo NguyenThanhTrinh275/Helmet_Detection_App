@@ -25,3 +25,4 @@ jobs:
                   firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HELMET_DETECTION_71466 }}"
                   projectId: helmet-detection-71466
                   entryPoint: ./frontend # Chỉ định nơi chứa file firebase.json
+                  channelId: live
