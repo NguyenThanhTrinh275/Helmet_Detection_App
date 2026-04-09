@@ -67,6 +67,7 @@ frontend/yarn-error.log*
 *.json
 !package.json
 !composer.json
+!firebase.json
 .dockerignore
 
 # --- OS Specific ---
