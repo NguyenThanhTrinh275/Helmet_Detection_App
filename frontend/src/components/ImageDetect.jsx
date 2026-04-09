@@ -3,7 +3,8 @@
 import { useState, useRef, useCallback } from "react";
 import "./ImageDetect.css";
 
-const API_URL = "/api/detect/image";
+const BASE_URL = import.meta.env.VITE_API_URL || "";
+const API_URL = `${BASE_URL}/api/detect/image`;
 
 export default function ImageDetect() {
 	const [preview, setPreview] = useState(null);

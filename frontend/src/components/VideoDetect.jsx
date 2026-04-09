@@ -3,7 +3,8 @@
 import { useState, useRef, useCallback } from "react";
 import "./VideoDetect.css";
 
-const API_URL = "/api/detect/video";
+const BASE_URL = import.meta.env.VITE_API_URL || "";
+const API_URL = `${BASE_URL}/api/detect/video`;
 
 export default function VideoDetect() {
 	const [videoPreview, setVideoPreview] = useState(null);

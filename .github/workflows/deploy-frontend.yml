@@ -1,0 +1,27 @@
+# @format
+
+name: Deploy Frontend to Firebase Hosting
+on:
+    push:
+        branches:
+            - main # Kiểm tra lại xem nhánh chính của bạn là main hay master nhé
+
+jobs:
+    build_and_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Install and Build
+              run: |
+                  npm ci
+                  npm run build
+              working-directory: ./frontend # Nhảy vào folder FE để build
+
+            - name: Deploy to Firebase Hosting
+              uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  repoToken: "${{ secrets.GITHUB_TOKEN }}"
+                  firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HELMET_DETECTION_71466 }}"
+                  projectId: helmet-detection-71466
+                  entryPoint: ./frontend # Chỉ định nơi chứa file firebase.json

@@ -11,19 +11,28 @@ from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from model_loader import get_model, CLASS_NAMES
 
 app = FastAPI(title="Helmet Detection API")
 
+# CORS: cho phép Firebase Hosting domain và localhost dev
+ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve frontend static files nếu tồn tại (khi deploy)
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if FRONTEND_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIR / "assets")), name="static")
 
 IMG_SIZE = 640
 CONF_THRESHOLD = 0.25
@@ -215,6 +224,18 @@ async def websocket_detect(websocket: WebSocket):
 @app.get("/api/health")
 async def health():
     return {"status": "ok", "model_loaded": get_model() is not None}
+
+
+# Serve frontend SPA — phải đặt cuối cùng
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    """Serve frontend index.html cho tất cả các route không phải API."""
+    if FRONTEND_DIR.exists():
+        file_path = FRONTEND_DIR / full_path
+        if file_path.is_file():
+            return FileResponse(str(file_path))
+        return FileResponse(str(FRONTEND_DIR / "index.html"))
+    return JSONResponse(status_code=404, content={"error": "Frontend not built"})
 
 
 if __name__ == "__main__":

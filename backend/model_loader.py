@@ -5,7 +5,11 @@ from pathlib import Path
 from ultralytics import YOLO
 
 # Đường dẫn tới model weights
-WEIGHTS_PATH = Path(__file__).resolve().parent.parent / "ai-model" / "runs" / "helmet_detect" / "weights" / "best.pt"
+# Ưu tiên biến môi trường (dùng khi deploy), fallback về đường dẫn local
+WEIGHTS_PATH = Path(os.environ.get(
+    "MODEL_WEIGHTS_PATH",
+    str(Path(__file__).resolve().parent.parent / "ai-model" / "runs" / "helmet_detect" / "weights" / "best.pt")
+))
 
 _model = None
 

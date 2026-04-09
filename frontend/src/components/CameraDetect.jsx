@@ -71,8 +71,17 @@ export default function CameraDetect() {
 
 	const startWs = useCallback(() => {
 		// Kết nối WebSocket
-		const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-		const wsUrl = `${protocol}://${window.location.host}/ws/detect`;
+		const apiUrl = import.meta.env.VITE_API_URL || "";
+		let wsUrl;
+		if (apiUrl) {
+			const url = new URL(apiUrl);
+			const protocol = url.protocol === "https:" ? "wss" : "ws";
+			wsUrl = `${protocol}://${url.host}/ws/detect`;
+		} else {
+			const protocol =
+				window.location.protocol === "https:" ? "wss" : "ws";
+			wsUrl = `${protocol}://${window.location.host}/ws/detect`;
+		}
 		const ws = new WebSocket(wsUrl);
 		wsRef.current = ws;
 
