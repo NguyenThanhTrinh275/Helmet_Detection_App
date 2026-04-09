@@ -14,7 +14,7 @@ jobs:
 
             - name: Install and Build
               run: |
-                  npm ci
+                  npm install
                   npm run build
               working-directory: ./frontend # Nhảy vào folder FE để build
 
