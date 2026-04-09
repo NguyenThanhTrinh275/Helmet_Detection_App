@@ -1,0 +1,116 @@
+/** @format */
+
+.camera-panel {
+	max-width: 960px;
+}
+
+.error-msg {
+	color: #d32f2f;
+	background: #fff5f5;
+	padding: 10px 16px;
+	border-radius: 8px;
+	border: 1px solid #ffcdd2;
+}
+
+.camera-layout {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.camera-feed {
+	width: 100%;
+	max-width: 640px;
+	aspect-ratio: 4/3;
+	background: #1a1a1a;
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.camera-placeholder {
+	text-align: center;
+	color: #888;
+}
+
+.camera-placeholder span {
+	font-size: 64px;
+	display: block;
+	margin-bottom: 12px;
+}
+
+.camera-result-img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.camera-controls {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.btn-lg {
+	padding: 14px 36px;
+	font-size: 1.1rem;
+}
+
+.btn.danger {
+	background: #d32f2f;
+	color: #fff;
+}
+
+.btn.danger:hover {
+	background: #b71c1c;
+}
+
+/* Live stats */
+.live-stats {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.stat-badge {
+	padding: 6px 16px;
+	border-radius: 20px;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.fps-badge {
+	background: #e3f2fd;
+	color: #1565c0;
+}
+
+.total-badge {
+	background: #f3e5f5;
+	color: #7b1fa2;
+}
+
+.helmet-badge {
+	background: #e8f5e9;
+	color: #2e7d32;
+}
+
+.no-helmet-badge {
+	background: #ffebee;
+	color: #c62828;
+	animation: blink 1s infinite;
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+}
